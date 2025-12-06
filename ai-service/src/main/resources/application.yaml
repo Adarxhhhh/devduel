@@ -1,3 +1,10 @@
+server:
+  port: 8085
+
 spring:
   application:
     name: ai-service
+
+gemini:
+  api-key: ${GEMINI_API_KEY:AIzaSyCskWt5OWf8gVJIC2y2zMx9tKp4YSuvBgs}
+  model: gemini-2.0-flash
