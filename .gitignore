@@ -1,0 +1,25 @@
+# Build outputs
+**/target/
+**/dist/
+**/build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Environment files
+**/.env
+**/.env.local
+**/.env.production
+
+# Node
+**/node_modules/
+npm-debug.log*
+
+# Logs
+*.log
+
+# OS
+Thumbs.db

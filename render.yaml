@@ -1,0 +1,96 @@
+services:
+  - type: web
+    name: devduel-auth
+    runtime: docker
+    dockerfilePath: auth-service/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: devduel-challenge
+    runtime: docker
+    dockerfilePath: challenge-service/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JUDGE0_URL
+        sync: false
+      - key: JUDGE0_API_KEY
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: devduel-match
+    runtime: docker
+    dockerfilePath: match-service/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: REDIS_SSL
+        value: "true"
+      - key: AUTH_SERVICE_URL
+        sync: false
+      - key: CHALLENGE_SERVICE_URL
+        sync: false
+      - key: AI_SERVICE_URL
+        sync: false
+      - key: LEADERBOARD_SERVICE_URL
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: devduel-leaderboard
+    runtime: docker
+    dockerfilePath: leaderboard-service/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        sync: false
+      - key: REDIS_PASSWORD
+        sync: false
+      - key: REDIS_SSL
+        value: "true"
+      - key: AUTH_SERVICE_URL
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: devduel-ai
+    runtime: docker
+    dockerfilePath: ai-service/Dockerfile
+    dockerContext: .
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: CHALLENGE_SERVICE_URL
+        sync: false
+      - key: MATCH_SERVICE_URL
+        sync: false
+    healthCheckPath: /health
